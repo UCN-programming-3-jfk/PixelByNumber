@@ -37,7 +37,10 @@ namespace PixelByNumber.ClassLibrary
                     currentRunLength++;
                     x++;
                 } while (x < pixelWidth);
-                stringBuilder.AppendLine(currentRunLength.ToString());
+                if (y < pixelHeight-1)
+                {
+                    stringBuilder.AppendLine(currentRunLength.ToString()); 
+                }
             }
 
             return stringBuilder.ToString();
@@ -69,7 +72,27 @@ namespace PixelByNumber.ClassLibrary
         [SupportedOSPlatform("windows")]
         public static Bitmap ToBitmap(this string numberString)
         {
-            return null;
+            var size = numberString.ToSize();
+            Bitmap bmp = new Bitmap(size.Width, size.Height);
+            var y = 0;
+            foreach (var line in numberString.Split('\n', StringSplitOptions.RemoveEmptyEntries))
+            {
+                var runs = line.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList().Select(value => int.Parse(value));
+                var currentColor = Color.White;
+                var x = 0;
+                foreach (var run in runs)
+                {
+                    for (int i = 0; i < run; i++)
+                    {
+                        bmp.SetPixel(x, y, currentColor);
+                        x++;
+                    }
+                    currentColor = currentColor== Color.White ? Color.Black : Color.White;
+                }
+                y++;
+            }
+            
+            return bmp;
         }
 
 
@@ -79,6 +102,18 @@ namespace PixelByNumber.ClassLibrary
                 color1.R.Equals(color2.R) &&
                 color1.G.Equals(color2.G) &&
                 color1.B.Equals(color2.B);
+
+        }
+
+        public static Size ToSize(this string pixelByNumberstring)
+        {
+            var lines = pixelByNumberstring.Split('\n', StringSplitOptions.RemoveEmptyEntries);
+
+            var stringValues = lines[0].Trim().Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+            var intValues = stringValues.ToList().Select(item => int.Parse(item));
+
+            return new Size(intValues.Sum(), lines.Length);
 
         }
     }
