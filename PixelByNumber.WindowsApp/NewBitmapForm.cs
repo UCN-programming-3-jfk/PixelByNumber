@@ -17,11 +17,13 @@ public partial class NewBitmapForm : Form
     }
 
     public int Width {
+        set { numWidth.Value = value; }
         get { return (int)numWidth.Value; }
     }
 
     public int Height
     {
+        set { numHeight.Value = value; }
         get { return (int)numHeight.Value; }
     }
 }

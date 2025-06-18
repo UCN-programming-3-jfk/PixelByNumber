@@ -108,8 +108,9 @@ public partial class Form1 : Form
 
     private void NewBitmap()
     {
-        NewBitmapForm newBitmapForm = new NewBitmapForm();
-        if (newBitmapForm.ShowDialog() == DialogResult.OK)
+        NewBitmapForm newBitmapForm = new NewBitmapForm() { Width = Image.Width, Height = Image.Height};
+
+        if (newBitmapForm.ShowDialog(this) == DialogResult.OK)
         {
             NewBitmap(newBitmapForm.Width, newBitmapForm.Height);
         }
@@ -118,7 +119,7 @@ public partial class Form1 : Form
 
     private void SaveFile()
     {
-        if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+        if (saveFileDialog1.ShowDialog(this) == DialogResult.OK)
         {
             File.WriteAllText(saveFileDialog1.FileName, bmp.ToNumberstring());
         }
