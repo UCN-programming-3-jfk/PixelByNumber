@@ -5,27 +5,43 @@ namespace PixelByNumber.WindowsApp;
 
 public partial class Form1 : Form
 {
-    Bitmap bmp = new Bitmap(8, 8);
+    Bitmap bmp;
+
+    public Bitmap Image
+    {
+        get => bmp; set
+        {
+            bmp = value; textBox1.Text = Image.ToNumberstring();
+            UpdateUi();
+        } }
+
     public Form1()
     {
         InitializeComponent();
-
-        using Graphics g = Graphics.FromImage(bmp);
-        g.FillRectangle(Brushes.White, new Rectangle(0, 0, 8, 8));
+        NewBitmap(8, 8);
 
         pictureBox1.Paint += PictureBox1_Paint;
         pictureBox1.MouseDown += pictureBox1_MouseMove;
-        UpdateUi();
+
         textBox1.Text = bmp.ToNumberstring();
         textBox1.Select(0, 0);
         button1.Focus();
+    }
+
+    private void NewBitmap(int width, int height)
+    {
+        var newBmp = new Bitmap(width, height);
+        using Graphics g = Graphics.FromImage(newBmp);
+        g.FillRectangle(Brushes.White, new Rectangle(0, 0, width, height));
+        Image = newBmp;
+        
     }
 
     private void UpdateUi()
     {
         lblHeightInPixels.Text = $"Height in pixels: {bmp.Height}";
         lblWidthInPixels.Text = $"Width in pixels: {bmp.Width}";
-       
+
     }
 
     private void PictureBox1_Paint(object? sender, PaintEventArgs e)
@@ -35,7 +51,7 @@ public partial class Form1 : Form
 
         e.Graphics.DrawImage(bmp, new Rectangle(0, 0, pictureBox1.Width, pictureBox1.Height));
         var verticalLineInterval = pictureBox1.Width / bmp.Width; ;
-        var horizontalLineInterval = pictureBox1.Width / bmp.Width;
+        var horizontalLineInterval = pictureBox1.Height / bmp.Height;
         for (int x = 0; x < bmp.Width; x++)
         {
             e.Graphics.DrawLine(Pens.Blue, verticalLineInterval * x, 0, verticalLineInterval * x, pictureBox1.Height);
@@ -83,7 +99,53 @@ public partial class Form1 : Form
         }
         catch (Exception ex)
         {
-            textBox1.BackColor= Color.Yellow;
+            textBox1.BackColor = Color.Yellow;
         }
+    }
+
+    private void NewBitmap()
+    {
+        NewBitmapForm newBitmapForm = new NewBitmapForm();
+        if (newBitmapForm.ShowDialog() == DialogResult.OK)
+        {
+            NewBitmap(newBitmapForm.Width, newBitmapForm.Height);
+        }
+    }
+
+    private void button1_Click(object sender, EventArgs e)
+    {
+        NewBitmap();
+    }
+
+    private void newBitmapToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        NewBitmap();
+    }
+
+    private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        SaveFile();
+    }
+
+    private void SaveFile()
+    {
+        if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+        {
+            File.WriteAllText(saveFileDialog1.FileName, bmp.ToNumberstring());
+        }
+    }
+
+    private void openpbnFileToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        OpenFile();
+    }
+
+    private void OpenFile()
+    {
+        if (openFileDialog1.ShowDialog(this) == DialogResult.OK)
+        {
+            Image = File.ReadAllText(openFileDialog1.FileName).ToBitmap();
+        }
+
     }
 }
