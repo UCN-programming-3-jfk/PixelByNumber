@@ -1,11 +1,6 @@
-﻿
-
-
-using PixelByNumber.ClassLibrary;
+﻿using PixelByNumber.ClassLibrary;
 using System.Drawing;
-
 namespace PixelByNumber.ConsoleApp;
-
 internal class Program
 {
     
