@@ -39,8 +39,8 @@ public partial class Form1 : Form
 
     private void UpdateUi()
     {
-        lblHeightInPixels.Text = $"Height in pixels: {bmp.Height}";
-        lblWidthInPixels.Text = $"Width in pixels: {bmp.Width}";
+        lblHeightInPixels.Text = $"Height in pixels: {Image.Height}";
+        lblWidthInPixels.Text = $"Width in pixels: {Image.Width}";
     }
 
 
@@ -50,14 +50,19 @@ public partial class Form1 : Form
         e.Graphics.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.Half;
 
         e.Graphics.DrawImage(bmp, new Rectangle(0, 0, pictureBox1.Width, pictureBox1.Height));
-        var verticalLineInterval = pictureBox1.Width / bmp.Width; ;
-        var horizontalLineInterval = pictureBox1.Height / bmp.Height;
-        for (int x = 0; x < bmp.Width; x++)
+        var verticalLineInterval = pictureBox1.Width / Image.Width; ;
+        var horizontalLineInterval = pictureBox1.Height / Image.Height;
+        
+        e.Graphics.DrawLine(Pens.Blue, 1, 0, 1, pictureBox1.Height);
+        e.Graphics.DrawLine(Pens.Blue, pictureBox1.Width, 0, pictureBox1.Width, pictureBox1.Height);
+        for (int x = 0; x < Image.Width; x++)
         {
             e.Graphics.DrawLine(Pens.Blue, verticalLineInterval * x, 0, verticalLineInterval * x, pictureBox1.Height);
         }
 
-        for (int y = 0; y < bmp.Height; y++)
+        e.Graphics.DrawLine(Pens.Blue, 0, 1, pictureBox1.Width, 1);
+        e.Graphics.DrawLine(Pens.Blue, 0, pictureBox1.Height,pictureBox1.Width, pictureBox1.Height);
+        for (int y = 0; y < Image.Height; y++)
         {
             e.Graphics.DrawLine(Pens.Blue, 0, horizontalLineInterval * y, pictureBox1.Width, horizontalLineInterval * y);
         }
@@ -65,9 +70,9 @@ public partial class Form1 : Form
 
     private bool DrawIfNecessary(MouseEventArgs e)
     {
-        var x = (e.X / (float)pictureBox1.Width) * bmp.Width;
-        var y = (e.Y / (float)pictureBox1.Height) * bmp.Height;
-        if (x < 0 || y < 0 || x >= bmp.Width || y >= bmp.Height) { return false; }
+        var x = (e.X / (float)pictureBox1.Width) * Image.Width;
+        var y = (e.Y / (float)pictureBox1.Height) * Image.Height;
+        if (x < 0 || y < 0 || x >= Image.Width || y >= Image.Height) { return false; }
         bool paint = false;
         Color color = Color.White;
         if ((Control.MouseButtons & MouseButtons.Left) == MouseButtons.Left)
@@ -83,8 +88,8 @@ public partial class Form1 : Form
 
         if (paint)
         {
-            bmp.SetPixel((int)x, (int)y, color);
-            textBox1.Text = bmp.ToNumberstring();
+            Image.SetPixel((int)x, (int)y, color);
+            textBox1.Text = Image.ToNumberstring();
         }
         pictureBox1.Invalidate();
         return true;
@@ -121,7 +126,7 @@ public partial class Form1 : Form
     {
         if (saveFileDialog1.ShowDialog(this) == DialogResult.OK)
         {
-            File.WriteAllText(saveFileDialog1.FileName, bmp.ToNumberstring());
+            File.WriteAllText(saveFileDialog1.FileName, Image.ToNumberstring());
         }
     }
 

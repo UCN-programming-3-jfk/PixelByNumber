@@ -49,7 +49,7 @@ partial class Form1
         // 
         // pictureBox1
         // 
-        pictureBox1.Location = new Point(3, 78);
+        pictureBox1.Location = new Point(12, 64);
         pictureBox1.Name = "pictureBox1";
         pictureBox1.Size = new Size(1024, 1024);
         pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
