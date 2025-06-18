@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36121.58 d17.14
+VisualStudioVersion = 17.14.36121.58
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PixelByNumber.ClassLibrary", "PixelByNumber.ClassLibrary\PixelByNumber.ClassLibrary.csproj", "{92B0A8A5-DAEF-46BB-972D-5A7791AA2D61}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PixelByNumber.TestProject", "PixelByNumber.TestProject\PixelByNumber.TestProject.csproj", "{9BA3FBA1-FB56-41E2-91FA-01E2E5E18EDF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PixelByNumber.ConsoleApp", "PixelByNumber.ConsoleApp\PixelByNumber.ConsoleApp.csproj", "{960E7BBF-7882-4ACF-A7E5-342F6BB5A8DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PixelByNumber.WindowsApp", "PixelByNumber.WindowsApp\PixelByNumber.WindowsApp.csproj", "{4CF201F5-F2B1-494E-8B2C-BACDE120E354}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{960E7BBF-7882-4ACF-A7E5-342F6BB5A8DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{960E7BBF-7882-4ACF-A7E5-342F6BB5A8DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{960E7BBF-7882-4ACF-A7E5-342F6BB5A8DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CF201F5-F2B1-494E-8B2C-BACDE120E354}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CF201F5-F2B1-494E-8B2C-BACDE120E354}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CF201F5-F2B1-494E-8B2C-BACDE120E354}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CF201F5-F2B1-494E-8B2C-BACDE120E354}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

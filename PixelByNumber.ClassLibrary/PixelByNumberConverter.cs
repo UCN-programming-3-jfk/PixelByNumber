@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Runtime.CompilerServices;
 using System.Runtime.Versioning;
 using System.Text;
 
@@ -70,6 +71,10 @@ namespace PixelByNumber.ClassLibrary
         [SupportedOSPlatform("windows")]
         public static Bitmap ToBitmap(this string numberString)
         {
+            if (!IsValidPixelByNumberString(numberString))
+            {
+                throw new ArgumentException("Invalid format. Are you missing a comma or do the pixel sums in all lines differ?");
+            }
             var size = numberString.ToSize();
             Bitmap bmp = new Bitmap(size.Width, size.Height);
             var y = 0;
@@ -113,6 +118,17 @@ namespace PixelByNumber.ClassLibrary
 
             return new Size(intValues.Sum(), lines.Length);
 
+        }
+
+        public static bool IsValidPixelByNumberString(this string pixelByNumberstring)
+        {
+            var lines = pixelByNumberstring.Split('\n', StringSplitOptions.RemoveEmptyEntries).ToList();
+
+            var lineSums = lines.Select(line => line.Split(",", StringSplitOptions.RemoveEmptyEntries).ToList().Select( l => int.Parse(l)).Sum()).ToList();
+
+            if (!lineSums.All(intValue => intValue.Equals(lineSums[0]))) { return false; }
+
+            return true;
         }
     }
 }
