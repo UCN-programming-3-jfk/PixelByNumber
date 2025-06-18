@@ -1,6 +1,9 @@
 ﻿
 
 
+using PixelByNumber.ClassLibrary;
+using System.Drawing;
+
 namespace PixelByNumber.ConsoleApp;
 
 internal class Program
@@ -31,12 +34,18 @@ internal class Program
 
     private static void ConvertToBitmap(FileInfo fileInfo)
     {
-        throw new NotImplementedException();
+        var newFile = Path.Combine(fileInfo.DirectoryName, Path.GetFileNameWithoutExtension(fileInfo.Name)) + ".png";
+        var pixelByNumberString = File.ReadAllText(fileInfo.FullName);
+        var bitmap = pixelByNumberString.ToBitmap();
+        bitmap.Save(newFile);
     }
 
     private static void ConvertToPbn(FileInfo fileInfo)
     {
-        throw new NotImplementedException();
+        var newFile = Path.Combine(fileInfo.DirectoryName, Path.GetFileNameWithoutExtension(fileInfo.Name)) + ".pbn";
+        var bitmap = (Bitmap)Image.FromFile(fileInfo.FullName);
+        var pixelByNumberString = bitmap.ToNumberstring();
+        File.WriteAllText(newFile, pixelByNumberString);
     }
 
     private static bool ValidateParametersAndWriteErrorsIfNecessary(string[] args)

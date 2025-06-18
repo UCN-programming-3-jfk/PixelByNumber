@@ -8,4 +8,12 @@
     <AssemblyName>PixelByNumberConverter</AssemblyName>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.Drawing.Common" Version="9.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PixelByNumber.ClassLibrary\PixelByNumber.ClassLibrary.csproj" />
+  </ItemGroup>
+
 </Project>

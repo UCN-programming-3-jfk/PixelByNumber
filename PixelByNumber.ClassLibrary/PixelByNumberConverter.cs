@@ -37,10 +37,8 @@ namespace PixelByNumber.ClassLibrary
                     currentRunLength++;
                     x++;
                 } while (x < pixelWidth);
-                if (y < pixelHeight-1)
-                {
                     stringBuilder.AppendLine(currentRunLength.ToString()); 
-                }
+                
             }
 
             return stringBuilder.ToString();

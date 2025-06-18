@@ -2,7 +2,7 @@
   "profiles": {
     "PixelByNumber.ConsoleApp": {
       "commandName": "Project",
-      "commandLineArgs": "c:\\temp\\bitmap.png"
+      "commandLineArgs": "c:\\temp\\bitmap.pbn"
     }
   }
 }
