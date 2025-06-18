@@ -55,7 +55,7 @@ partial class Form1
         pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
         pictureBox1.TabIndex = 0;
         pictureBox1.TabStop = false;
-        pictureBox1.MouseMove += pictureBox1_MouseMove;
+        pictureBox1.MouseMove += PictureBox1_MouseMove;
         // 
         // textBox1
         // 
@@ -66,7 +66,7 @@ partial class Form1
         textBox1.ScrollBars = ScrollBars.Vertical;
         textBox1.Size = new Size(710, 571);
         textBox1.TabIndex = 1;
-        textBox1.TextChanged += textBox1_TextChanged;
+        textBox1.TextChanged += TextBox1_TextChanged;
         // 
         // lblWidthInPixels
         // 
@@ -94,7 +94,7 @@ partial class Form1
         button1.TabIndex = 4;
         button1.Text = "&New bitmap";
         button1.UseVisualStyleBackColor = true;
-        button1.Click += button1_Click;
+        button1.Click += Button1_Click;
         // 
         // label1
         // 
@@ -128,7 +128,7 @@ partial class Form1
         newBitmapToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.N;
         newBitmapToolStripMenuItem.Size = new Size(314, 34);
         newBitmapToolStripMenuItem.Text = "&New bitmap";
-        newBitmapToolStripMenuItem.Click += newBitmapToolStripMenuItem_Click;
+        newBitmapToolStripMenuItem.Click += NewBitmapToolStripMenuItem_Click;
         // 
         // openpbnFileToolStripMenuItem
         // 
@@ -136,7 +136,7 @@ partial class Form1
         openpbnFileToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.O;
         openpbnFileToolStripMenuItem.Size = new Size(314, 34);
         openpbnFileToolStripMenuItem.Text = "&Open *.pbn file";
-        openpbnFileToolStripMenuItem.Click += openpbnFileToolStripMenuItem_Click;
+        openpbnFileToolStripMenuItem.Click += OpenpbnFileToolStripMenuItem_Click;
         // 
         // saveAsToolStripMenuItem
         // 
@@ -144,7 +144,7 @@ partial class Form1
         saveAsToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.S;
         saveAsToolStripMenuItem.Size = new Size(314, 34);
         saveAsToolStripMenuItem.Text = "Save as ...";
-        saveAsToolStripMenuItem.Click += saveAsToolStripMenuItem_Click;
+        saveAsToolStripMenuItem.Click += SaveAsToolStripMenuItem_Click;
         // 
         // toolStripMenuItem1
         // 
@@ -157,15 +157,15 @@ partial class Form1
         closeApplicationToolStripMenuItem.ShortcutKeys = Keys.Alt | Keys.F4;
         closeApplicationToolStripMenuItem.Size = new Size(314, 34);
         closeApplicationToolStripMenuItem.Text = "Close application";
+        closeApplicationToolStripMenuItem.Click += CloseApplicationToolStripMenuItem_Click;
         // 
         // saveFileDialog1
         // 
-        saveFileDialog1.Filter = "PBN file|(*.pnb)";
+        saveFileDialog1.Filter = "PBN file|*.pnb";
         // 
         // openFileDialog1
         // 
-        openFileDialog1.FileName = "*.pnb";
-        openFileDialog1.Filter = "PNB files|(*.pnb)";
+        openFileDialog1.Filter = "PNB files|*.pnb";
         // 
         // Form1
         // 

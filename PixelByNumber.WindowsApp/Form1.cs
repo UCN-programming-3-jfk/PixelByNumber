@@ -1,4 +1,3 @@
-using Microsoft.VisualBasic.Devices;
 using PixelByNumber.ClassLibrary;
 
 namespace PixelByNumber.WindowsApp;
@@ -13,7 +12,8 @@ public partial class Form1 : Form
         {
             bmp = value; textBox1.Text = Image.ToNumberstring();
             UpdateUi();
-        } }
+        }
+    }
 
     public Form1()
     {
@@ -21,9 +21,9 @@ public partial class Form1 : Form
         NewBitmap(8, 8);
 
         pictureBox1.Paint += PictureBox1_Paint;
-        pictureBox1.MouseDown += pictureBox1_MouseMove;
+        pictureBox1.MouseDown += (_, e) => PictureBox1_MouseMove(pictureBox1, e);
 
-        textBox1.Text = bmp.ToNumberstring();
+        textBox1.Text = Image.ToNumberstring();
         textBox1.Select(0, 0);
         button1.Focus();
     }
@@ -34,17 +34,17 @@ public partial class Form1 : Form
         using Graphics g = Graphics.FromImage(newBmp);
         g.FillRectangle(Brushes.White, new Rectangle(0, 0, width, height));
         Image = newBmp;
-        
+
     }
 
     private void UpdateUi()
     {
         lblHeightInPixels.Text = $"Height in pixels: {bmp.Height}";
         lblWidthInPixels.Text = $"Width in pixels: {bmp.Width}";
-
     }
 
-    private void PictureBox1_Paint(object? sender, PaintEventArgs e)
+
+    private void DrawBitmapWithGridlines(PaintEventArgs e)
     {
         e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
         e.Graphics.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.Half;
@@ -63,11 +63,11 @@ public partial class Form1 : Form
         }
     }
 
-    private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+    private bool DrawIfNecessary(MouseEventArgs e)
     {
         var x = (e.X / (float)pictureBox1.Width) * bmp.Width;
         var y = (e.Y / (float)pictureBox1.Height) * bmp.Height;
-        if (x < 0 || y < 0 || x >= bmp.Width || y >= bmp.Height) { return; }
+        if (x < 0 || y < 0 || x >= bmp.Width || y >= bmp.Height) { return false; }
         bool paint = false;
         Color color = Color.White;
         if ((Control.MouseButtons & MouseButtons.Left) == MouseButtons.Left)
@@ -87,8 +87,11 @@ public partial class Form1 : Form
             textBox1.Text = bmp.ToNumberstring();
         }
         pictureBox1.Invalidate();
+        return true;
     }
-    private void textBox1_TextChanged(object sender, EventArgs e)
+
+
+    private void TryConvertTextToBitmap()
     {
         try
         {
@@ -112,20 +115,6 @@ public partial class Form1 : Form
         }
     }
 
-    private void button1_Click(object sender, EventArgs e)
-    {
-        NewBitmap();
-    }
-
-    private void newBitmapToolStripMenuItem_Click(object sender, EventArgs e)
-    {
-        NewBitmap();
-    }
-
-    private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
-    {
-        SaveFile();
-    }
 
     private void SaveFile()
     {
@@ -135,17 +124,22 @@ public partial class Form1 : Form
         }
     }
 
-    private void openpbnFileToolStripMenuItem_Click(object sender, EventArgs e)
-    {
-        OpenFile();
-    }
 
     private void OpenFile()
     {
         if (openFileDialog1.ShowDialog(this) == DialogResult.OK)
         {
             Image = File.ReadAllText(openFileDialog1.FileName).ToBitmap();
+            saveFileDialog1.FileName = openFileDialog1.FileName;
         }
-
     }
+
+    private void PictureBox1_Paint(object? sender, PaintEventArgs e) => DrawBitmapWithGridlines(e);
+    private void OpenpbnFileToolStripMenuItem_Click(object sender, EventArgs e) => OpenFile();
+    private void PictureBox1_MouseMove(object sender, MouseEventArgs e) => DrawIfNecessary(e);
+    private void TextBox1_TextChanged(object sender, EventArgs e) => TryConvertTextToBitmap();
+    private void Button1_Click(object sender, EventArgs e) => NewBitmap();
+    private void NewBitmapToolStripMenuItem_Click(object sender, EventArgs e) => NewBitmap();
+    private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e) => SaveFile();
+    private void CloseApplicationToolStripMenuItem_Click(object sender, EventArgs e) => Application.Exit();
 }
