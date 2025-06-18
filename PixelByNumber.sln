@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36121.58 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PixelByNumber.ClassLibrary", "PixelByNumber.ClassLibrary\PixelByNumber.ClassLibrary.csproj", "{92B0A8A5-DAEF-46BB-972D-5A7791AA2D61}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PixelByNumber.TestProject", "PixelByNumber.TestProject\PixelByNumber.TestProject.csproj", "{9BA3FBA1-FB56-41E2-91FA-01E2E5E18EDF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{92B0A8A5-DAEF-46BB-972D-5A7791AA2D61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92B0A8A5-DAEF-46BB-972D-5A7791AA2D61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92B0A8A5-DAEF-46BB-972D-5A7791AA2D61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92B0A8A5-DAEF-46BB-972D-5A7791AA2D61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BA3FBA1-FB56-41E2-91FA-01E2E5E18EDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BA3FBA1-FB56-41E2-91FA-01E2E5E18EDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BA3FBA1-FB56-41E2-91FA-01E2E5E18EDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BA3FBA1-FB56-41E2-91FA-01E2E5E18EDF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4FFA0ECC-040D-48DA-A881-FF13DAE3F162}
+	EndGlobalSection
+EndGlobal
