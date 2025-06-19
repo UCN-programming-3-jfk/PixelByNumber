@@ -161,11 +161,11 @@ partial class Form1
         // 
         // saveFileDialog1
         // 
-        saveFileDialog1.Filter = "PBN file|*.pnb";
+        saveFileDialog1.Filter = "PBN file|*.pbn";
         // 
         // openFileDialog1
         // 
-        openFileDialog1.Filter = "PNB files|*.pnb";
+        openFileDialog1.Filter = "PBN files|*.pbn";
         // 
         // Form1
         // 
@@ -180,7 +180,7 @@ partial class Form1
         Controls.Add(pictureBox1);
         Controls.Add(menuStrip1);
         Font = new Font("Segoe UI", 14F);
-        FormBorderStyle = FormBorderStyle.FixedDialog;
+        FormBorderStyle = FormBorderStyle.FixedToolWindow;
         MainMenuStrip = menuStrip1;
         Margin = new Padding(4, 5, 4, 5);
         Name = "Form1";
