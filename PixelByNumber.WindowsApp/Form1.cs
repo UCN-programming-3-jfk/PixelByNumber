@@ -50,21 +50,18 @@ public partial class Form1 : Form
         e.Graphics.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.Half;
 
         e.Graphics.DrawImage(bmp, new Rectangle(0, 0, pictureBox1.Width, pictureBox1.Height));
-        var verticalLineInterval = pictureBox1.Width / Image.Width; ;
-        var horizontalLineInterval = pictureBox1.Height / Image.Height;
         
-        e.Graphics.DrawLine(Pens.Blue, 1, 0, 1, pictureBox1.Height);
-        e.Graphics.DrawLine(Pens.Blue, pictureBox1.Width, 0, pictureBox1.Width, pictureBox1.Height);
+        e.Graphics.DrawRectangle(Pens.Blue, 1, 1, pictureBox1.Width-1,pictureBox1.Height-1);
         for (int x = 0; x < Image.Width; x++)
         {
-            e.Graphics.DrawLine(Pens.Blue, verticalLineInterval * x, 0, verticalLineInterval * x, pictureBox1.Height);
+            var pixelPosition = x / (float)Image.Width * pictureBox1.Width;
+            e.Graphics.DrawLine(Pens.Blue, pixelPosition, 0, pixelPosition, pictureBox1.Height);
         }
 
-        e.Graphics.DrawLine(Pens.Blue, 0, 1, pictureBox1.Width, 1);
-        e.Graphics.DrawLine(Pens.Blue, 0, pictureBox1.Height,pictureBox1.Width, pictureBox1.Height);
         for (int y = 0; y < Image.Height; y++)
         {
-            e.Graphics.DrawLine(Pens.Blue, 0, horizontalLineInterval * y, pictureBox1.Width, horizontalLineInterval * y);
+            var pixelPosition = y / (float)Image.Height * pictureBox1.Height;
+            e.Graphics.DrawLine(Pens.Blue, 0, pixelPosition, pictureBox1.Width, pixelPosition);
         }
     }
 

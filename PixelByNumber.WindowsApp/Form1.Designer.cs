@@ -49,10 +49,10 @@ partial class Form1
         // 
         // pictureBox1
         // 
-        pictureBox1.Location = new Point(12, 64);
+        pictureBox1.Location = new Point(12, 27);
         pictureBox1.Name = "pictureBox1";
         pictureBox1.Size = new Size(1024, 1024);
-        pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+        pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
         pictureBox1.TabIndex = 0;
         pictureBox1.TabStop = false;
         pictureBox1.MouseMove += PictureBox1_MouseMove;
@@ -60,7 +60,7 @@ partial class Form1
         // textBox1
         // 
         textBox1.Font = new Font("Segoe UI", 18F);
-        textBox1.Location = new Point(1052, 116);
+        textBox1.Location = new Point(1052, 55);
         textBox1.Multiline = true;
         textBox1.Name = "textBox1";
         textBox1.ScrollBars = ScrollBars.Vertical;
@@ -71,24 +71,24 @@ partial class Form1
         // lblWidthInPixels
         // 
         lblWidthInPixels.AutoSize = true;
-        lblWidthInPixels.Location = new Point(1052, 719);
+        lblWidthInPixels.Location = new Point(1052, 640);
         lblWidthInPixels.Name = "lblWidthInPixels";
-        lblWidthInPixels.Size = new Size(200, 38);
+        lblWidthInPixels.Size = new Size(137, 25);
         lblWidthInPixels.TabIndex = 2;
         lblWidthInPixels.Text = "Width in pixels";
         // 
         // lblHeightInPixels
         // 
         lblHeightInPixels.AutoSize = true;
-        lblHeightInPixels.Location = new Point(1052, 769);
+        lblHeightInPixels.Location = new Point(1052, 674);
         lblHeightInPixels.Name = "lblHeightInPixels";
-        lblHeightInPixels.Size = new Size(209, 38);
+        lblHeightInPixels.Size = new Size(142, 25);
         lblHeightInPixels.TabIndex = 3;
         lblHeightInPixels.Text = "Height in pixels";
         // 
         // button1
         // 
-        button1.Location = new Point(1498, 1017);
+        button1.Location = new Point(1498, 966);
         button1.Name = "button1";
         button1.Size = new Size(264, 85);
         button1.TabIndex = 4;
@@ -99,9 +99,9 @@ partial class Form1
         // label1
         // 
         label1.AutoSize = true;
-        label1.Location = new Point(1052, 75);
+        label1.Location = new Point(1052, 27);
         label1.Name = "label1";
-        label1.Size = new Size(412, 38);
+        label1.Size = new Size(280, 25);
         label1.TabIndex = 5;
         label1.Text = "Pixel by number representation:";
         // 
@@ -111,7 +111,7 @@ partial class Form1
         menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem });
         menuStrip1.Location = new Point(0, 0);
         menuStrip1.Name = "menuStrip1";
-        menuStrip1.Size = new Size(1785, 33);
+        menuStrip1.Size = new Size(1785, 24);
         menuStrip1.TabIndex = 6;
         menuStrip1.Text = "menuStrip1";
         // 
@@ -119,14 +119,14 @@ partial class Form1
         // 
         fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { newBitmapToolStripMenuItem, openpbnFileToolStripMenuItem, saveAsToolStripMenuItem, toolStripMenuItem1, closeApplicationToolStripMenuItem });
         fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-        fileToolStripMenuItem.Size = new Size(54, 29);
+        fileToolStripMenuItem.Size = new Size(37, 20);
         fileToolStripMenuItem.Text = "&File";
         // 
         // newBitmapToolStripMenuItem
         // 
         newBitmapToolStripMenuItem.Name = "newBitmapToolStripMenuItem";
         newBitmapToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.N;
-        newBitmapToolStripMenuItem.Size = new Size(314, 34);
+        newBitmapToolStripMenuItem.Size = new Size(207, 22);
         newBitmapToolStripMenuItem.Text = "&New bitmap";
         newBitmapToolStripMenuItem.Click += NewBitmapToolStripMenuItem_Click;
         // 
@@ -134,7 +134,7 @@ partial class Form1
         // 
         openpbnFileToolStripMenuItem.Name = "openpbnFileToolStripMenuItem";
         openpbnFileToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.O;
-        openpbnFileToolStripMenuItem.Size = new Size(314, 34);
+        openpbnFileToolStripMenuItem.Size = new Size(207, 22);
         openpbnFileToolStripMenuItem.Text = "&Open *.pbn file";
         openpbnFileToolStripMenuItem.Click += OpenpbnFileToolStripMenuItem_Click;
         // 
@@ -142,20 +142,20 @@ partial class Form1
         // 
         saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
         saveAsToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.S;
-        saveAsToolStripMenuItem.Size = new Size(314, 34);
+        saveAsToolStripMenuItem.Size = new Size(207, 22);
         saveAsToolStripMenuItem.Text = "Save as ...";
         saveAsToolStripMenuItem.Click += SaveAsToolStripMenuItem_Click;
         // 
         // toolStripMenuItem1
         // 
         toolStripMenuItem1.Name = "toolStripMenuItem1";
-        toolStripMenuItem1.Size = new Size(311, 6);
+        toolStripMenuItem1.Size = new Size(204, 6);
         // 
         // closeApplicationToolStripMenuItem
         // 
         closeApplicationToolStripMenuItem.Name = "closeApplicationToolStripMenuItem";
         closeApplicationToolStripMenuItem.ShortcutKeys = Keys.Alt | Keys.F4;
-        closeApplicationToolStripMenuItem.Size = new Size(314, 34);
+        closeApplicationToolStripMenuItem.Size = new Size(207, 22);
         closeApplicationToolStripMenuItem.Text = "Close application";
         closeApplicationToolStripMenuItem.Click += CloseApplicationToolStripMenuItem_Click;
         // 
@@ -169,7 +169,7 @@ partial class Form1
         // 
         // Form1
         // 
-        AutoScaleDimensions = new SizeF(15F, 38F);
+        AutoScaleDimensions = new SizeF(11F, 25F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(1785, 1117);
         Controls.Add(label1);
