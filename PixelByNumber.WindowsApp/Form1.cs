@@ -4,11 +4,12 @@ namespace PixelByNumber.WindowsApp;
 
 public partial class Form1 : Form
 {
-    Bitmap bmp;
+    private Bitmap bmp;
 
     public Bitmap Image
     {
-        get => bmp; set
+        get => bmp; 
+        set
         {
             bmp = value; textBox1.Text = Image.ToNumberstring();
             UpdateUi();
@@ -82,7 +83,6 @@ public partial class Form1 : Form
         lblWidthInPixels.Text = $"Width in pixels: {Image.Width}";
     }
 
-
     private void DrawBitmapWithGridlines(PaintEventArgs e)
     {
         e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
@@ -131,7 +131,6 @@ public partial class Form1 : Form
         return true;
     }
 
-
     private void TryConvertTextToBitmap()
     {
         try
@@ -157,7 +156,6 @@ public partial class Form1 : Form
         }
     }
 
-
     private void SaveFile()
     {
         if (saveFileDialog1.ShowDialog(this) == DialogResult.OK)
@@ -176,6 +174,7 @@ public partial class Form1 : Form
         }
     }
 
+    #region Events
     private void PictureBox1_Paint(object? sender, PaintEventArgs e) => DrawBitmapWithGridlines(e);
     private void OpenpbnFileToolStripMenuItem_Click(object sender, EventArgs e) => OpenFile();
     private void PictureBox1_MouseMove(object sender, MouseEventArgs e) => DrawIfNecessary(e);
@@ -183,5 +182,6 @@ public partial class Form1 : Form
     private void Button1_Click(object sender, EventArgs e) => NewBitmap();
     private void NewBitmapToolStripMenuItem_Click(object sender, EventArgs e) => NewBitmap();
     private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e) => SaveFile();
-    private void CloseApplicationToolStripMenuItem_Click(object sender, EventArgs e) => Application.Exit();
+    private void CloseApplicationToolStripMenuItem_Click(object sender, EventArgs e) => Application.Exit(); 
+    #endregion
 }
