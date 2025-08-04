@@ -15,17 +15,41 @@ public partial class Form1 : Form
         }
     }
 
-    public Form1()
+    public Form1(string fileToOpen = null)
     {
         InitializeComponent();
-        NewBitmap(8, 8);
+        if(!String.IsNullOrWhiteSpace(fileToOpen))
+        {
+            if (!VerifyFile(fileToOpen))
+            { return; }
 
+            Image = File.ReadAllText(fileToOpen).ToBitmap();
+        }
+        else
+        {
+            NewBitmap(8, 8);
+        }
         pictureBox1.Paint += PictureBox1_Paint;
         pictureBox1.MouseDown += (_, e) => PictureBox1_MouseMove(pictureBox1, e);
 
         textBox1.Text = Image.ToNumberstring();
         textBox1.Select(0, 0);
         button1.Focus();
+    }
+
+    private bool VerifyFile(string fileToOpen)
+    {
+        if (!File.Exists(fileToOpen)) {
+            MessageBox.Show($"File '{fileToOpen}' does not exist", "File not found", MessageBoxButtons.OK);
+            return false;
+        }
+
+        if (!Path.GetExtension(fileToOpen).ToUpper().Contains("PBN"))
+        {
+            MessageBox.Show($"File '{fileToOpen}' does not exist", "File not found", MessageBoxButtons.OK);
+            return false;
+        }
+        return true;
     }
 
     private void NewBitmap(int width, int height)

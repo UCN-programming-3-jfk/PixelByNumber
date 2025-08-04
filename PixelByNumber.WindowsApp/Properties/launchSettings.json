@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "PixelByNumber.WindowsApp": {
+      "commandName": "Project",
+      "commandLineArgs": "\"C:\\Users\\JFK\\Desktop\\Happy face.pbn\""
+    }
+  }
+}
