@@ -46,7 +46,7 @@ namespace PixelByNumber.ClassLibrary
         }
 
         [SupportedOSPlatform("windows")]
-        private static bool ContainsOnlyBlackAndWhite(Bitmap bitmapToConvert)
+        private static bool ContainsOnlyBlackAndWhite(this Bitmap bitmapToConvert)
         {
             if (bitmapToConvert == null)
                 throw new ArgumentNullException(nameof(bitmapToConvert));
@@ -129,6 +129,11 @@ namespace PixelByNumber.ClassLibrary
             if (!lineSums.All(intValue => intValue.Equals(lineSums[0]))) { return false; }
 
             return true;
+        }
+
+        public static bool IsValidBitmap(this Bitmap pixelByNumberBitmap)
+        {
+            return pixelByNumberBitmap.ContainsOnlyBlackAndWhite();
         }
     }
 }

@@ -22,8 +22,23 @@ public partial class Form1 : Form
         {
             if (!VerifyFile(fileToOpen))
             { return; }
-
-            Image = File.ReadAllText(fileToOpen).ToBitmap();
+            switch (Path.GetExtension(fileToOpen).ToUpper())
+            {
+                case ".PBN": Image = File.ReadAllText(fileToOpen).ToBitmap(); break;
+                case ".BMP":
+                case ".PNG":
+                    var bitmap = (Bitmap)Bitmap.FromFile(fileToOpen);
+                    if (!bitmap.IsValidBitmap())
+                    {
+                        MessageBox.Show("Only black and white bitmaps allowed.", "Invalid bitmap");
+                        Application.Exit();
+                    }
+                    else
+                    {
+                        Image = bitmap;
+                    }
+                        break;
+            }
         }
         else
         {
@@ -44,9 +59,9 @@ public partial class Form1 : Form
             return false;
         }
 
-        if (!Path.GetExtension(fileToOpen).ToUpper().Contains("PBN"))
+        if (! ".PBN.BMP.PNG".Contains(Path.GetExtension(fileToOpen), StringComparison.InvariantCultureIgnoreCase))
         {
-            MessageBox.Show($"File '{fileToOpen}' does not exist", "File not found", MessageBoxButtons.OK);
+            MessageBox.Show($"'{fileToOpen}' is invalid filetype. Only PBN, BMP and PNG files are supported.", "Invalid filetype", MessageBoxButtons.OK);
             return false;
         }
         return true;

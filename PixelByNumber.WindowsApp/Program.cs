@@ -15,7 +15,6 @@ internal static class Program
         ApplicationConfiguration.Initialize();
         string fileToOpen = null;
         if (args.Length != 0) {
-            Debugger.Break();
             fileToOpen = args[0];
         }
         Application.Run(new Form1(fileToOpen));
