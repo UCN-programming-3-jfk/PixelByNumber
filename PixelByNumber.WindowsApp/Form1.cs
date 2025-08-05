@@ -8,7 +8,7 @@ public partial class Form1 : Form
 
     public Bitmap Image
     {
-        get => bmp; 
+        get => bmp;
         set
         {
             bmp = value; textBox1.Text = Image.ToNumberstring();
@@ -19,7 +19,7 @@ public partial class Form1 : Form
     public Form1(string fileToOpen = null)
     {
         InitializeComponent();
-        if(!String.IsNullOrWhiteSpace(fileToOpen))
+        if (!String.IsNullOrWhiteSpace(fileToOpen))
         {
             if (!VerifyFile(fileToOpen))
             { return; }
@@ -29,16 +29,8 @@ public partial class Form1 : Form
                 case ".BMP":
                 case ".PNG":
                     var bitmap = (Bitmap)Bitmap.FromFile(fileToOpen);
-                    if (!bitmap.IsValidBitmap())
-                    {
-                        MessageBox.Show("Only black and white bitmaps allowed.", "Invalid bitmap");
-                        Application.Exit();
-                    }
-                    else
-                    {
-                        Image = bitmap;
-                    }
-                        break;
+                    Image = bitmap.ToMonoChrome();
+                    break;
             }
         }
         else
@@ -55,12 +47,13 @@ public partial class Form1 : Form
 
     private bool VerifyFile(string fileToOpen)
     {
-        if (!File.Exists(fileToOpen)) {
+        if (!File.Exists(fileToOpen))
+        {
             MessageBox.Show($"File '{fileToOpen}' does not exist", "File not found", MessageBoxButtons.OK);
             return false;
         }
 
-        if (! ".PBN.BMP.PNG".Contains(Path.GetExtension(fileToOpen), StringComparison.InvariantCultureIgnoreCase))
+        if (!".PBN.BMP.PNG".Contains(Path.GetExtension(fileToOpen), StringComparison.InvariantCultureIgnoreCase))
         {
             MessageBox.Show($"'{fileToOpen}' is invalid filetype. Only PBN, BMP and PNG files are supported.", "Invalid filetype", MessageBoxButtons.OK);
             return false;
@@ -89,8 +82,8 @@ public partial class Form1 : Form
         e.Graphics.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.Half;
 
         e.Graphics.DrawImage(bmp, new Rectangle(0, 0, pictureBox1.Width, pictureBox1.Height));
-        
-        e.Graphics.DrawRectangle(Pens.Blue, 1, 1, pictureBox1.Width-1,pictureBox1.Height-1);
+
+        e.Graphics.DrawRectangle(Pens.Blue, 1, 1, pictureBox1.Width - 1, pictureBox1.Height - 1);
         for (int x = 0; x < Image.Width; x++)
         {
             var pixelPosition = x / (float)Image.Width * pictureBox1.Width;
@@ -148,7 +141,7 @@ public partial class Form1 : Form
 
     private void NewBitmap()
     {
-        NewBitmapForm newBitmapForm = new NewBitmapForm() { Width = Image.Width, Height = Image.Height};
+        NewBitmapForm newBitmapForm = new NewBitmapForm() { Width = Image.Width, Height = Image.Height };
 
         if (newBitmapForm.ShowDialog(this) == DialogResult.OK)
         {
@@ -182,6 +175,6 @@ public partial class Form1 : Form
     private void Button1_Click(object sender, EventArgs e) => NewBitmap();
     private void NewBitmapToolStripMenuItem_Click(object sender, EventArgs e) => NewBitmap();
     private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e) => SaveFile();
-    private void CloseApplicationToolStripMenuItem_Click(object sender, EventArgs e) => Application.Exit(); 
+    private void CloseApplicationToolStripMenuItem_Click(object sender, EventArgs e) => Application.Exit();
     #endregion
 }

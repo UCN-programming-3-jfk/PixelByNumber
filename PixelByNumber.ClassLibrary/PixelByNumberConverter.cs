@@ -135,5 +135,26 @@ namespace PixelByNumber.ClassLibrary
         {
             return pixelByNumberBitmap.ContainsOnlyBlackAndWhite();
         }
+
+        public static Bitmap ToMonoChrome(this Bitmap bitmap)
+        {
+            if (bitmap == null) { throw new ArgumentException("Bitmap is null"); }
+
+            Bitmap monoBitmap = new Bitmap(bitmap.Width, bitmap.Height);
+
+            for (int y = 0; y < bitmap.Height; y++)
+            {
+                for (int x = 0; x < bitmap.Width; x++)
+                {
+                    Color original = bitmap.GetPixel(x, y);
+                    // Calculate luminance using standard formula
+                    int luminance = (int)(0.299 * original.R + 0.587 * original.G + 0.114 * original.B);
+                    Color bwColor = luminance < 128 ? Color.Black : Color.White;
+                    monoBitmap.SetPixel(x, y, bwColor);
+                }
+            }
+
+            return monoBitmap;
+        }
     }
 }
